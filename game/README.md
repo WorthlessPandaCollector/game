@@ -3,28 +3,28 @@
 This is a game for code class.  There will be 3 characters to choose from: Mage, Warlock, or Warrior.
 
 
-## The Mage class has:
-High MP, Intelligence, Magic Power
-Moderate Dexterity
-Low HP, Defense, Strength, Attack Power
-Starts with Fireball Spell
-Weapon: Staff (2dmg, // +1 INT)
-Equipment: Robe (+10 HP, -2 INT, +1 DEF, +5 Magic Damage), Ring
+## Mage:
+- High MP, Intelligence, Magic Power
+- Moderate Dexterity
+- Low HP, Defense, Strength, Attack Power
+- Starts with Fireball Spell
+- Weapon: Staff (2dmg, // +1 INT)
+- Equipment: Robe (+10 HP, -2 INT, +1 DEF, +5 Magic Damage), Ring
 
-## The Warrior class has:
-High HP, Strength, Attack Power
-Moderate Dexterity, Defense
-Low MP, Magic Power, Intelligence
-Weapon: WarHammer (7dmg, // +2 STR)
-Equipment: Plate armor (+10HP, +5 DEF, -4 STR, -1 DEX)
+## Warrior:
+- High HP, Strength, Attack Power
+- Moderate Dexterity, Defense
+= Low MP, Magic Power, Intelligence
+- Weapon: WarHammer (7dmg, // +2 STR)
+- Equipment: Plate armor (+10HP, +5 DEF, -4 STR, -1 DEX)
 
-## The Warlock class has:
-High Intelligence
-Moderate HP, MP, Magic Power, 
-Low Strength, Defense, Dexterity, Attack Power
-Starts with pet Imp and Drain spell.
-Weapon: Wand (2dmg, // +5 HP, +5 MP, +1 INT)
-Equipment: Robe (+10HP, -2 INT, +1 DEF, +5 Magic Damage)
+## Warlock:
+- High Intelligence
+- Moderate HP, MP, Magic Power, 
+- Low Strength, Defense, Dexterity, Attack Power
+- Starts with pet Imp and Drain spell.
+- Weapon: Wand (2dmg, // +5 HP, +5 MP, +1 INT)
+- Equipment: Robe (+10HP, -2 INT, +1 DEF, +5 Magic Damage)
 
 
 
