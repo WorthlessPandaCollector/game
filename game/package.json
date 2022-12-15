@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "prompt-promise": "^1.0.3"
+  }
+}

@@ -3,12 +3,13 @@ const Pet = require("./pet");
 const drain = require("../spells/drain");
 const robe = require("../equipment/robe");
 const wand = require("../weapons/wand");
+const config = require("../config/config");
 
 
 
 class Warlock extends Character {
     constructor(name, pets){
-        super(name, "Warlock", 80, 100, 8, 3, 4, 4, 9, 9, 4, 5, 5);
+        super(name, config.classNames.WarlockClassName, 80, 100, 8, 3, 4, 4, 9, 9, 4, 5, 5);
        
 
         this.pets.push(new Pet("Imp", 5));
