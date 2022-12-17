@@ -1,4 +1,6 @@
 const config = require("../config/config");
+const mobs = require("../mobs/mobs");
+const drain = require("../spells/drain");
 
 class Character {
     constructor(name, className, health, mana, power, str, dex, attack, int, magic, def, speed) {
@@ -89,33 +91,48 @@ class Character {
         }
     }
     
+    getDamage(damageType) {
+        if(damageType) {
+            const spell = this.spells.find(t => t.name === damageType);
+            const pet = this.pets.find(t => t.name === damageType);
+            const weapon = this.weapons.find(a => a.name ===damageType);
 
-    getDamage() {
-        if(this.activePet) {
+
+
+        if(spell) {
+            if(this.mana < spell.mana) {
+                console.log("not enough mana");
+                return 0;
+            }
+            if(spell == drain){
+                this.health += spell.power;
+                return spell.power;
+            }
+            else{
+                this.mana -= spell.mana;
+                return spell.power + this.magic;
+            }
+        } else if(pet) {
+            const activePet = this.activePet.name;
             const petDamage = this.activePet.damage;
-            const magicDamage = this.magic;
-            return petDamage + magicDamage;
-        }
-        if(this.activeSpell) {
-            const spellDamage = this.activeSpell.power;
-            const magicDamage = this.magic;
-            return spellDamage + magicDamage;
-        }
-        if(this.activeWeapon) {
-            const weapDamage = this.activeWeapon.damage;
-            const attackDamage = this.attack;
-            return weapDamage + attackDamage;
-        }
-        else {
-            const attDamage = this.attack;
-            return attDamage;
+            return petDamage + this.magic;
+        } else if(weapon) {  
+            const activeWeapon = this.activeWeapon.name;
+            const weaponDamage = activeWeapon.damage;
+            return this.attack + this.activeWeapon.damage;
+        } else {
+            console.log("how could this happen to meeee...");
+            return this.attack;
+            }
         }
     }
+}
+    
+
 
     
 
 
-}
 
 
 

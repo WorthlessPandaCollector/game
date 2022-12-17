@@ -1,6 +1,6 @@
 const Weapon = require("./weapon");
 
-const wand = new Weapon("Wand", 2);
+const wand = new Weapon("wand", 2);
 
 
 

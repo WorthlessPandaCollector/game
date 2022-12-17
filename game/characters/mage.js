@@ -4,6 +4,7 @@ const frostbite = require("../spells/frostbite");
 const robe = require("../equipment/robe");
 const staff = require("../weapons/staff");
 const config = require("../config/config");
+const drain = require("../spells/drain");
 
 
 class Mage extends Character {
@@ -12,6 +13,7 @@ class Mage extends Character {
 
     
         this.spells.push(fireball);
+
        // save for level 3 spell        this.spells.push(frostbite); 
         this.equipment.push(robe);
         this.weapons.push(staff);
