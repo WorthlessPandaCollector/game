@@ -8,8 +8,26 @@ const config = require("./config/config");
 const mobs = require("./mobs/mobs");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// lets fighting love..
+
+wins = true;
+
 async function gameLoop() {
     let character;
+
+
     // name your character
     const charName = await prompt("Character name:");
     // choose your class
@@ -26,14 +44,42 @@ async function gameLoop() {
         } else {
             throw Error("undefined class");
         }
-        // spawn random mob
-        // randomIndex = Math.floor(Math.random() * mobs.length);
-       
-        let counter = 0;
-        let mob = mobs[counter]; // [0] is hrn, [1] is angrysapling
+
+        randomInt = Math.floor(Math.random()*mobs.length);
+        const healthyMob = mobs.filter(mobs => mobs.health > 0);
+        let mob = healthyMob[randomInt];
 
 
-        console.log("\n=======|A wild " + mob.name + " appears |=======");
+        
+        while(wins == true){
+            
+            const nextMob = mobs.filter(healthyMob => healthyMob.health > 0);
+            randomInt = Math.floor(Math.random()*nextMob.length);
+            mob = nextMob[randomInt];
+            
+            console.log("where is this ", nextMob)
+            
+            if(nextMob.length <= 0){
+                console.log("YOU WIN! GameOver!");
+                process.exit();
+            }
+            
+            const wins = await letsFightingLove(character,mob);
+
+
+            
+            const cont = await prompt("CONT");
+
+        }
+        console.log("GAMEOVER");
+        process.exit();
+
+        }
+    
+
+async function letsFightingLove(character,mob){
+        
+        console.log("\n\n\n=======|A wild " + mob.name + " appears |=======");
         console.log("=======| " + mob.name + " has " + mob.health + " health |======");
         console.log("\n");
 
@@ -64,7 +110,7 @@ async function gameLoop() {
             } else if(choice == "attack") { 
                 
                 if(character.activeWeapon === null){
-                    console.log("no weapon equipped");
+                    console.log("\n\n\nno weapon equipped\n\n\n");
                 }
                 else {
                     const activeWeapon = character.activeWeapon.name;
@@ -81,12 +127,12 @@ async function gameLoop() {
             } else if(choice == "equip") {
                 
                 const weaponNames = character.weapons.map(weapon => weapon.name);
-                const weaponSelect = await prompt(`Choose your weapon: \n[${weaponNames}]\n `);
+                const weaponSelect = await prompt(`Choose your weapon:    [${weaponNames}]\n `);
                 character.useWeapon(weaponSelect);
                 const mobDamage = mob.damage;
                 character.health -= mobDamage;
-                console.log(character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.");
-                console.log("Next turn.")
+                console.log("\n", character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.\n");
+                console.log("Next turn.\n")
 
             } else if(choice == "summon"){
                 
@@ -95,15 +141,15 @@ async function gameLoop() {
                 character.summonPet(petSelect);
                 const mobDamage = mob.damage;
                 character.health -= mobDamage;
-                console.log(character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.");
+                console.log("\n\n", character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.");
 
-                console.log("Next turn.")
+                console.log("\nNext turn.\n")
 
 
             } else if(choice == "pet attack"){
                 
                     if(character.activePet === null){
-                        console.log("no pet summoned")
+                        console.log("\n\n\nno pet summoned\n\n\n")
                 }
 
 
@@ -113,28 +159,37 @@ async function gameLoop() {
                     const mobDamage = mob.damage;
                     mob.health -= damage;
                     character.health -= mobDamage;
-                    console.log("\n",character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.");
-                    console.log(mob.name, "takes ", damage, " damage ||", mob.health, " health remaining.");
+                    console.log("\n",character.name, "takes ", mobDamage, " damage ||", character.health, " health remaining.\n\n");
+                    console.log("\n", mob.name, "takes ", damage, " damage ||", mob.health, " health remaining.\n");
                 }
 
             }
 
-            if (character.health < 0) {
-                console.log("test");
+            if (character.health <= 0) {
+                
+                console.log("You Lose");
+                wins = false;
+                return wins;
+                
             }
+
 
             if (mob.health <= 0  && character.health > 0) {
                 character.levelUp();
                 console.log("Congrats, you are now level ", + character.level);
- // stuck on figuring out how to loop this with a new mob ...
+                wins = true;
+                return wins;
+
 
             }
 
 
-            }
 
 
         }
+
+
+    }
             
     
 

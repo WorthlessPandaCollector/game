@@ -1,0 +1,7 @@
+const Mob = require("./mob");
+
+
+const waluigi = new Mob("Waluigi", 10, 25);
+
+
+module.exports = waluigi;

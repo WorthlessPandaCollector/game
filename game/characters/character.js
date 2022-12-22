@@ -106,6 +106,7 @@ class Character {
             }
             if(spell == drain){
                 this.health += spell.power;
+                console.log(`You absorbed ${spell.power} health. Total HP: ${this.health}`);
                 return spell.power;
             }
             else{

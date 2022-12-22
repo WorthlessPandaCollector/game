@@ -1,5 +1,3 @@
-
-
 class Mob {
     constructor(name, health, damage) {
         this.name = name;
