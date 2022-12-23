@@ -2,7 +2,8 @@ const config = {
     classNames: {
         MageClassName: "mage",
         WarlockClassName: "warlock",
-        WarriorClassName: "warrior"
+        WarriorClassName: "warrior",
+        ArcherClassName: "archer"
     }
 }
 

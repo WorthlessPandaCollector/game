@@ -1,6 +1,7 @@
 const Mage = require("./characters/mage");
 const Warlock = require("./characters/warlock");
 const Warrior = require("./characters/warrior");
+const Archer = require("./characters/archer");
 const Pet = require("./characters/pet");
 const fireball = require("./spells/fireball");
 const prompt = require("prompt-promise");
@@ -32,7 +33,7 @@ async function gameLoop() {
     const charName = await prompt("Character name:");
     // choose your class
 
-    const characterClass = await prompt(`Pick your Class, ${charName}: mage, warlock, warrior. \n `); 
+    const characterClass = await prompt(`Pick your Class, ${charName}: mage, warlock, warrior, archer. \n `); 
         if(characterClass === config.classNames.MageClassName) {
             character = new Mage(charName);
         }
@@ -41,6 +42,9 @@ async function gameLoop() {
         }
         else if (characterClass === config.classNames.WarriorClassName) {
             character = new Warrior(charName);
+        } 
+        else if (characterClass === config.classNames.ArcherClassName) {
+            character = new Archer(charName);
         } else {
             throw Error("undefined class");
         }
@@ -55,19 +59,12 @@ async function gameLoop() {
             
             const nextMob = mobs.filter(healthyMob => healthyMob.health > 0);
             randomInt = Math.floor(Math.random()*nextMob.length);
-            mob = nextMob[randomInt];
-            
-            console.log("where is this ", nextMob)
-            
+            mob = nextMob[randomInt];           
             if(nextMob.length <= 0){
                 console.log("YOU WIN! GameOver!");
                 process.exit();
             }
-            
-            const wins = await letsFightingLove(character,mob);
-
-
-            
+            const wins = await letsFightingLove(character,mob);            
             const cont = await prompt("CONT");
 
         }
@@ -95,7 +92,7 @@ async function letsFightingLove(character,mob){
                 const spellList = character.spells.map(spell => spell.name);
                 const spellSelect = await prompt("Choose from spells [" + spellList + "]\n");
                     if (spellSelect != spellList){
-                        throw Error("u suck");
+                        throw Error("u ruined the game");
                 }
                     else {
                         const damage = character.getDamage(spellSelect);
